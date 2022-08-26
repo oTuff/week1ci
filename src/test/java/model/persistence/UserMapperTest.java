@@ -1,16 +1,21 @@
 package model.persistence;
 
+import model.entities.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserMapperTest {
+
+    UserMapper userMapper = new UserMapper();
 
     @BeforeEach
     void setUp() {
@@ -26,6 +31,8 @@ class UserMapperTest {
                     "  `phone` VARCHAR(45) NULL,\n" +
                     "  `address` VARCHAR(45) NULL,\n" +
                     "  PRIMARY KEY (`id`));";
+
+            con.prepareStatement("DELETE FROM startcode_test.usertable").executeUpdate();
             con.prepareStatement(createTable).executeUpdate();
             String SQL = "INSERT INTO startcode_test.usertable (fname, lname, pw, phone, address) VALUES (?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
@@ -44,5 +51,13 @@ class UserMapperTest {
 
     @AfterEach
     void tearDown() {
+    }
+
+    @Test
+    void userList() throws SQLException {
+        ArrayList<String> actual = userMapper.retrieveAllUserNames();
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("Hans Hansen");
+        assertEquals(expected, actual);
     }
 }
