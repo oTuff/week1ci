@@ -1,5 +1,7 @@
 package model.entities;
 
+import java.util.Objects;
+
 public class User {
     private String fName;
     private String lName;
@@ -53,6 +55,30 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                ", pw='" + pw + '\'' +
+                ", phone=" + phone +
+                ", address='" + address + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return phone == user.phone && fName.equals(user.fName) && lName.equals(user.lName) && pw.equals(user.pw) && address.equals(user.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fName, lName, pw, phone, address);
     }
 }
 
