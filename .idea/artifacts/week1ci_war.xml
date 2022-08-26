@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="week1ci:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>week1ci</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="week1ci-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="week1ci:war exploded" />
+    </root>
+  </artifact>
+</component>
