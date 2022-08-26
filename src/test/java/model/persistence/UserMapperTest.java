@@ -29,7 +29,6 @@ class UserMapperTest {
                     "  `address` VARCHAR(45) NULL,\n" +
                     "  PRIMARY KEY (`id`));";
 
-            con.prepareStatement("DELETE FROM `startcode_test`.`usertable`").executeUpdate();
             con.prepareStatement(createTable).executeUpdate();
             String SQL = "INSERT INTO startcode_test.usertable (fname, lname, pw, phone, address) VALUES (?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
@@ -47,7 +46,9 @@ class UserMapperTest {
     }
 
     @AfterEach
-    void tearDown() {
+    void tearDown() throws SQLException, ClassNotFoundException {
+        Connection con = DBconnector.connection();
+        con.prepareStatement("DELETE FROM `startcode_test`.`usertable`").executeUpdate();
     }
 
     @Test
