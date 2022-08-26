@@ -1,6 +1,5 @@
 package model.persistence;
 
-import model.entities.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,8 +13,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserMapperTest {
-
-    UserMapper userMapper = new UserMapper();
 
     @BeforeEach
     void setUp() {
@@ -61,7 +58,7 @@ class UserMapperTest {
 
     @Test
     void userList() throws SQLException {
-        ArrayList<String> actual = userMapper.retrieveAllUserNames();
+        ArrayList<String> actual = new UserMapper().retrieveAllUserNames();
         ArrayList<String> expected = new ArrayList<>();
         expected.add("Hans Hansen");
         assertEquals(expected, actual);
