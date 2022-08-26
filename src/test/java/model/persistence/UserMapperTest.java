@@ -54,6 +54,12 @@ class UserMapperTest {
     }
 
     @Test
+    void testConnection() throws SQLException, ClassNotFoundException {
+        Connection con = DBconnector.connection();
+        assertNotNull(con);
+    }
+
+    @Test
     void userList() throws SQLException {
         ArrayList<String> actual = userMapper.retrieveAllUserNames();
         ArrayList<String> expected = new ArrayList<>();
