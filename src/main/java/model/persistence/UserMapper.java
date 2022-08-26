@@ -22,7 +22,7 @@ public class UserMapper {
     public ArrayList<String> retrieveAllUserNames() throws SQLException{
         ArrayList<String> names = new ArrayList<>();
 
-        String sql = "SELECT fname, lname FROM startcode_test.usertable";
+        String sql = "SELECT `fname`, `lname` FROM `startcode_test`.`usertable`";
 
         ResultSet rs = con.prepareStatement(sql).executeQuery();
         while (rs.next()) {
