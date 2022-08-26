@@ -49,6 +49,29 @@ public class UserMapper {
         int phone = Integer.parseInt(rs.getString("phone"));
         String address = rs.getString("address");
 
-        return new User(fName,lName,pw,phone,address);
+        return new User(fName, lName, pw, phone, address);
+    }
+
+    public void updateUser(String name, String fName, String lName, String pw, int i, String address) throws SQLException {
+        String[] fullName = name.split(" ");
+
+        if (!(fName == null)) {
+            con.prepareStatement("UPDATE usertable SET fname = '" + fName + "' WHERE fname = '" + fullName[0] + "' AND lname = '" + fullName[1] + "'").executeUpdate();
+        }
+        if (!(lName == null)) {
+            con.prepareStatement("UPDATE usertable SET lname = '" + lName + "' WHERE fname = '" + fullName[0] + "' AND lname = '" + fullName[1] + "'").executeUpdate();
+
+        }
+        if (!(pw == null)) {
+            con.prepareStatement("UPDATE usertable SET pw = '" + pw + "' WHERE fname = '" + fullName[0] + "' AND lname = '" + fullName[1] + "'").executeUpdate();
+
+        }
+        if (!(i == 0)) {
+            con.prepareStatement("UPDATE usertable SET phone = '" + i + "' WHERE fname = '" + fullName[0] + "' AND lname = '" + fullName[1] + "'").executeUpdate();
+
+        }
+        if (!(address == null)) {
+            con.prepareStatement("UPDATE usertable SET address = '" + address + "' WHERE fname = '" + fullName[0] + "' AND lname = '" + fullName[1] + "'").executeUpdate();
+        }
     }
 }

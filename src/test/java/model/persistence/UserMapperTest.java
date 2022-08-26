@@ -71,7 +71,15 @@ class UserMapperTest {
         UserMapper um = new UserMapper();
         User actual = um.retrieveUser("Hans Hansen");
         User expected = new User("Hans", "Hansen","Hemmelig123",40404040,"Rolighedsvej 3");
+        assertEquals(expected, actual);
+    }
 
+    @Test
+    void updateUser() throws SQLException {
+        UserMapper um = new UserMapper();
+        um.updateUser("Hans Hansen", null, null, "password", 12345678, null);
+        User actual = um.retrieveUser("Hans Hansen");
+        User expected = new User("Hans", "Hansen" ,"password",12345678,"Rolighedsvej 3");
         assertEquals(expected, actual);
     }
 }
